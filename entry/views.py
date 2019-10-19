@@ -34,6 +34,26 @@ def entry(request):
         request,
         'entry/add.html',
         {
+            'title': 'Add Diary',
+            'add_highlight': True,
             'addform': form,
+        }
+    )
+
+
+def show(request):
+    """
+        We need to show the diaries sorted by date posted in descending order
+        5:32 PM 10/19/19 by Arjun Adhikari
+    """
+    diaries = reversed(DiaryModel.objects.order_by('posted_date'))
+
+    return render(
+        request,
+        'entry/show.html',
+        {
+            'show_highlight': True,
+            'title': 'Diaries till now',
+            'diaries': diaries
         }
     )

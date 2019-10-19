@@ -13,6 +13,6 @@ class DiaryModel(models.Model):
         return self.note
 
     def summary(self):
-        if len(self.note) > 100:
-            return self.note[:100] + '...'
-        return self.note[:100]
+        if len(self.content) > 100:
+            return self.content[:100] + '  ...'
+        return self.content[:100]
