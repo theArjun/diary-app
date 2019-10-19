@@ -1,4 +1,5 @@
 {% extends 'entry/base.html' %}
+{% load staticfiles %}
 {% block content %}
 
     <div class="container">
@@ -18,12 +19,19 @@
 
                     </div>
                     <div class="card-footer">
-                        <a href="{% url 'detail' diary.id %}" class="card-link btn btn-primary btn-block btn-lg">Read More</a>
+                        <a href="{% url 'detail' diary.id %}" class="card-link btn btn-primary btn-block btn-lg">Read
+                            More</a>
                     </div>
                 </div>
 
             {% endfor %}
         </div>
+        {% if icon %}
+            <div class="text-center">
+                <p class="text-muted">There's nothing to show</p>
+                <img class="img-fluid" src="{% static 'icons/icons8-empty-box-64.png' %}">
+            </div>
+        {% endif %}
     </div>
 
 {% endblock %}

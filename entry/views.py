@@ -47,7 +47,8 @@ def show(request):
         We need to show the diaries sorted by date posted in descending order
         5:32 PM 10/19/19 by Arjun Adhikari
     """
-    diaries = reversed(DiaryModel.objects.order_by('posted_date'))
+    diaries = DiaryModel.objects.order_by('posted_date')
+    icon = True if len(diaries) == 0 else None
 
     return render(
         request,
@@ -56,7 +57,8 @@ def show(request):
             'show_highlight': True,
             'title': 'Diaries till now',
             'subtitle': 'It\'s all you\'ve written.',
-            'diaries': diaries
+            'diaries': reversed(diaries),
+            'icon' : icon
         }
     )
 
