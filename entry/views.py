@@ -36,7 +36,7 @@ def entry(request):
         request,
         'entry/add.html',
         {
-            'title': 'Add Diary',
+            'title': 'Add Entry',
             'subtitle': 'Add what you feel and we\'ll store it for you.',
             'add_highlight': True,
             'addform': form,
@@ -57,7 +57,7 @@ def show(request):
         'entry/show.html',
         {
             'show_highlight': True,
-            'title': 'Diaries till now',
+            'title': 'All Entries',
             'subtitle': 'It\'s all you\'ve written.',
             'diaries': reversed(diaries),
             'icon': icon
