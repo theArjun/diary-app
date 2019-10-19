@@ -7,16 +7,26 @@
 
     <!-- Include Quill stylesheet -->
     <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Vollkorn&display=swap" rel="stylesheet">
     <!-- Include Bootstrap stylesheet -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Add Entry</title>
+    <style>
+        html body div.container.contact-form form.mt-5 div.ql-container.ql-snow {
+            height: 300px;
+        }
+
+        body {
+            font-family: 'Vollkorn', serif;
+        }
+    </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Diary App</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'entry' %}">Diary App</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -24,14 +34,18 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link {% if add_highlight %}
+                <a class="nav-link mr-3 {% if add_highlight %}
                     active
-                {% endif %} " href="{% url 'entry' %}">Add Entries</a>
+                {% endif %} " href="{% url 'entry' %}">
+                    <img src="{% static 'icons/plus-square-solid.svg' %}" height="30" width="30" alt="Add Diaries">
+                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {% if show_highlight %}
                     active
-                {% endif %} " href="{% url 'show' %}">Show Entries</a>
+                {% endif %} " href="{% url 'show' %}">
+                    <img src="{% static 'icons/book-solid.svg' %}" height="30" width="30" alt="Show Diaries">
+                </a>
             </li>
         </ul>
     </div>
@@ -40,7 +54,7 @@
 <div class="jumbotron jumbotron-fluid text-center">
     <div class="container">
         <h1 class="display-4">{{ title }}</h1>
-        <p class="lead">Add what you feel and we'll store it for you.</p>
+        <p class="lead">{{ subtitle }}</p>
     </div>
 </div>
 

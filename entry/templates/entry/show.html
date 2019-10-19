@@ -10,12 +10,15 @@
                         <h5 class="card-title">{{ diary.note }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ diary.posted_date }}</h6>
                         <p class="card-text">
-                        {# To render HTML contents without escaping. #}
+                            {# To render HTML contents without escaping. #}
                             {% autoescape off %}
                                 {{ diary.summary }}
                             {% endautoescape %}
                         </p>
-                        <a href="#" class="card-link btn btn-primary">Read More</a>
+
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'detail' diary.id %}" class="card-link btn btn-primary btn-block btn-lg">Read More</a>
                     </div>
                 </div>
 
