@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .forms import AddForm
 from .models import DiaryModel
@@ -35,6 +35,7 @@ def entry(request):
         'entry/add.html',
         {
             'title': 'Add Diary',
+            'subtitle': 'Add what you feel and we\'ll store it for you.',
             'add_highlight': True,
             'addform': form,
         }
@@ -54,6 +55,22 @@ def show(request):
         {
             'show_highlight': True,
             'title': 'Diaries till now',
+            'subtitle': 'It\'s all you\'ve written.',
             'diaries': diaries
+        }
+    )
+
+
+def detail(request, diary_id):
+    diary = get_object_or_404(DiaryModel, pk=diary_id)
+
+    return render(
+        request,
+        'entry/detail.html',
+        {
+            'show_highlight': True,
+            'title': diary.note,
+            'subtitle': diary.posted_date,
+            'diary': diary
         }
     )
