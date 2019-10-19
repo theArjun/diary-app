@@ -16,11 +16,13 @@ def entry(request):
             note = request.POST['note']
             content = request.POST['content']
             posted_date = datetime.now()
+            productivity = request.POST['productivity']
 
             todays_diary = DiaryModel()
             todays_diary.note = note
             todays_diary.posted_date = posted_date
             todays_diary.content = content
+            todays_diary.productivity = productivity
 
             todays_diary.save()
 
@@ -58,7 +60,7 @@ def show(request):
             'title': 'Diaries till now',
             'subtitle': 'It\'s all you\'ve written.',
             'diaries': reversed(diaries),
-            'icon' : icon
+            'icon': icon
         }
     )
 
@@ -74,5 +76,26 @@ def detail(request, diary_id):
             'title': diary.note,
             'subtitle': diary.posted_date,
             'diary': diary
+        }
+    )
+
+
+def productivity(request):
+    
+    """
+        At max, draw chart for last 10 data.
+        11:24 PM 10/19/19 by Arjun Adhikari
+    """
+    data = DiaryModel.objects.order_by('posted_date')[:10]
+    icon = True if len(data) == 0 else None
+
+    return render(
+        request,
+        'entry/productivity.html',
+        {
+            'title': 'Productivity Chart',
+            'subtitle': 'Keep the line heading up always.',
+            'data': data,
+            'icon': icon
         }
     )
