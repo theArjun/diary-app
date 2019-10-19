@@ -1,0 +1,45 @@
+{% extends 'entry/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="container">
+        {% if icon %}
+            <div class="text-center">
+                <p class="text-muted">There's nothing to show</p>
+                <img height="300" src="{% static 'icons/empty-easter-basket.jpg' %}" alt="Nothing to Show">
+            </div>
+        {% else %}
+            <canvas id="myChart" width="450" height="200"></canvas>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+            <script>
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: [
+                            {% for datum in data %}
+                                '{{ datum.date_for_chart }}' ,
+                            {% endfor %}
+                        ],
+                        datasets: [{
+                            data: [
+                                {% for datum in data %}
+                                    {{ datum.productivity }} ,
+                                {% endfor %}
+                            ],
+                            label: "Productivity",
+                            borderColor: "#eb3477",
+                            fill: false
+                        }
+                        ]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'In range of 1 to 10'
+                        }
+                    }
+                });
+            </script>
+        {% endif %}
+    </div>
+{% endblock %}
