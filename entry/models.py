@@ -5,9 +5,10 @@ class DiaryModel(models.Model):
     note = models.CharField(max_length=100)
     content = models.TextField()
     posted_date = models.DateTimeField()
+    productivity = models.IntegerField()
 
-    def posted_date_preety(self):
-        return self.posted_date.strftime('%b %e %Y')
+    def date_for_chart(self):
+        return self.posted_date.strftime('%b %e')
 
     def __str__(self):
         return self.note
