@@ -36,8 +36,21 @@
             <li class="nav-item">
                 <a class="nav-link mr-3 {% if add_highlight %}
                     active
+                {% endif %} " href="{% url 'productivity' %}">
+                    <hr class="d-xl-none d-lg-none">
+                    <img src="{% static 'icons/chart-line-solid.svg' %}" height="30" width="30"
+                         alt="Productivity Chart">
+                    <span class="d-xl-none d-lg-none"> &nbsp; Productivity Chart</span>
+                    <hr class="d-xl-none d-lg-none">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mr-3 {% if add_highlight %}
+                    active
                 {% endif %} " href="{% url 'entry' %}">
                     <img src="{% static 'icons/plus-square-solid.svg' %}" height="30" width="30" alt="Add Diaries">
+                    <span class="d-xl-none d-lg-none"> &nbsp; Add Diaries</span>
+                    <hr class="d-xl-none d-lg-none">
                 </a>
             </li>
             <li class="nav-item">
@@ -45,6 +58,8 @@
                     active
                 {% endif %} " href="{% url 'show' %}">
                     <img src="{% static 'icons/book-solid.svg' %}" height="30" width="30" alt="Show Diaries">
+                    <span class="d-xl-none d-lg-none"> &nbsp; Show Diaries</span>
+                    <hr class="d-xl-none d-lg-none">
                 </a>
             </li>
         </ul>
