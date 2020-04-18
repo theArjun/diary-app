@@ -124,3 +124,7 @@ dmypy.json
 
 # End of https://www.gitignore.io/api/django
 
+# Misc.
+env/
+*.swp
+.vscode/
